@@ -2,7 +2,7 @@
 //  WritingReaderUITests.swift
 //  WritingReaderUITests
 //
-//  Created by Hezekiah Valdez on 1/12/17.
+//  Created by Hezekiah Valdez on 1/23/17.
 //  Copyright © 2017 Hezekiah Valdez. All rights reserved.
 //
 

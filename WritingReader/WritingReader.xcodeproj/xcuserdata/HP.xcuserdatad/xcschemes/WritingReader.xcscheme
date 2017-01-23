@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E699B2161E27FD8E0081A5A4"
+               BlueprintIdentifier = "E6FFAD131E3689B900953EF0"
                BuildableName = "WritingReader.app"
                BlueprintName = "WritingReader"
                ReferencedContainer = "container:WritingReader.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E699B22C1E27FD8E0081A5A4"
+               BlueprintIdentifier = "E6FFAD271E3689B900953EF0"
                BuildableName = "WritingReaderTests.xctest"
                BlueprintName = "WritingReaderTests"
                ReferencedContainer = "container:WritingReader.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E699B2371E27FD8E0081A5A4"
+               BlueprintIdentifier = "E6FFAD321E3689B900953EF0"
                BuildableName = "WritingReaderUITests.xctest"
                BlueprintName = "WritingReaderUITests"
                ReferencedContainer = "container:WritingReader.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E699B2161E27FD8E0081A5A4"
+            BlueprintIdentifier = "E6FFAD131E3689B900953EF0"
             BuildableName = "WritingReader.app"
             BlueprintName = "WritingReader"
             ReferencedContainer = "container:WritingReader.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E699B2161E27FD8E0081A5A4"
+            BlueprintIdentifier = "E6FFAD131E3689B900953EF0"
             BuildableName = "WritingReader.app"
             BlueprintName = "WritingReader"
             ReferencedContainer = "container:WritingReader.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E699B2161E27FD8E0081A5A4"
+            BlueprintIdentifier = "E6FFAD131E3689B900953EF0"
             BuildableName = "WritingReader.app"
             BlueprintName = "WritingReader"
             ReferencedContainer = "container:WritingReader.xcodeproj">
