@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class ViewController: UIViewController {
 
@@ -32,7 +33,27 @@ class ViewController: UIViewController {
     
     @IBAction func signIn(_ sender: UIButton) {
         ref.child("Email").setValue(emailTextField.text!)
+        FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: {(user, error) in
+            
+            if error != nil{
+                print("\nUSER NOT REGISTERED\n")
+            }else{
+                print("\n\nSuccessfully Logged In...Welcome\n")
+            }
+        })
     }
+    
+    @IBAction func signUp(_ sender: UIButton) {
+        FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+            if error != nil{
+                print(error!.localizedDescription)
+            }
+            else{
+                print("\nUser succesfully created!!!")
+            }
+        })
+    }
+    
     
     
 }
