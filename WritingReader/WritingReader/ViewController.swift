@@ -7,6 +7,7 @@
 //  Anthony and Guillermo (test for pushing)
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
 
@@ -20,6 +21,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    
+    @IBAction func signIn(_ sender: UIButton) {
+        
+    }
     
     
 }
