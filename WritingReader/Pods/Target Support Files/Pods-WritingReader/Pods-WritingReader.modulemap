@@ -1,0 +1,6 @@
+framework module Pods_WritingReader {
+  umbrella header "Pods-WritingReader-umbrella.h"
+
+  export *
+  module * { export * }
+}

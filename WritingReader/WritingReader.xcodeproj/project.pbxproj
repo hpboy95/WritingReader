@@ -10,6 +10,7 @@
 		51F1B7A400D53DD5A8761755 /* Pods_WritingReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61FBB920E8929EE0D26180CC /* Pods_WritingReader.framework */; };
 		863032169A18745BDDBEBB52 /* Pods_WritingReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ECBD9D1874D514A1E4E3F56 /* Pods_WritingReaderTests.framework */; };
 		CB1B9B451E9DCEA900B0D974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1B9B441E9DCEA900B0D974 /* GoogleService-Info.plist */; };
+		CBB680781EA8260D0078A6C9 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB680771EA8260D0078A6C9 /* CameraViewController.swift */; };
 		D43D94292696F2FBD57D6775 /* Pods_WritingReaderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F2A18CC167369EEB62AA89 /* Pods_WritingReaderUITests.framework */; };
 		E6FFAD181E3689B900953EF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FFAD171E3689B900953EF0 /* AppDelegate.swift */; };
 		E6FFAD1A1E3689B900953EF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FFAD191E3689B900953EF0 /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 		B5D156CFEE7710FC1A05BD4E /* Pods-WritingReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WritingReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WritingReader/Pods-WritingReader.debug.xcconfig"; sourceTree = "<group>"; };
 		C741BF088E04625820DBC7DA /* Pods-WritingReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WritingReaderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WritingReaderTests/Pods-WritingReaderTests.release.xcconfig"; sourceTree = "<group>"; };
 		CB1B9B441E9DCEA900B0D974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CBB680771EA8260D0078A6C9 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		DEAB42E3BA2CA110B6156055 /* Pods-WritingReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WritingReaderUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WritingReaderUITests/Pods-WritingReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6FFAD141E3689B900953EF0 /* WritingReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WritingReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FFAD171E3689B900953EF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				CB1B9B441E9DCEA900B0D974 /* GoogleService-Info.plist */,
 				E6FFAD201E3689B900953EF0 /* LaunchScreen.storyboard */,
 				E6FFAD231E3689B900953EF0 /* Info.plist */,
+				CBB680771EA8260D0078A6C9 /* CameraViewController.swift */,
 			);
 			path = WritingReader;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 			files = (
 				E6FFAD1A1E3689B900953EF0 /* ViewController.swift in Sources */,
 				E6FFAD181E3689B900953EF0 /* AppDelegate.swift in Sources */,
+				CBB680781EA8260D0078A6C9 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
