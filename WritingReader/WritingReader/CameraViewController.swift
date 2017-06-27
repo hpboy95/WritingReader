@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-import AVFoundation  
+import AVFoundation
+
 
 class CameraViewController: UIViewController {
     
