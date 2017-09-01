@@ -6,6 +6,7 @@ target 'WritingReader' do
 	pod ‘Firebase’
 	pod ‘Firebase/Auth’
 	pod ‘Firebase/Database’
+	pod ‘SwiftyJSON’
   	use_frameworks!
 
   # Pods for WritingReader

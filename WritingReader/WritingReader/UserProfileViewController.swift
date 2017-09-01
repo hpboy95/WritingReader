@@ -9,8 +9,9 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SwiftyJSON
 
-class UserProfileViewController: UIViewController {
+class UserProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,4 +67,46 @@ class UserProfileViewController: UIViewController {
     }
     */
 
+    
+    // Test - Start
+    let imagePicker = UIImagePickerController()
+    let session = URLSession.shared
+    
+    
+    var googleAPIKey = "AIzaSyBv-oL8NqvL0BpGWle979PufOOaF3ROz54"
+    var googleURL: URL {
+        return URL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(googleAPIKey)")!
+    }
+    
+    @IBAction func pickImageButton(_ sender: UIButton) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+//            imageView.contentMode = .scaleAspectFit
+//            imageView.isHidden = true // You could optionally display the image here by setting imageView.image = pickedImage
+//            spinner.startAnimating()
+//            faceResults.isHidden = true
+//            labelResults.isHidden = true
+//            
+//            // Base64 encode the image and create the request
+//            let binaryImageData = base64EncodeImage(pickedImage)
+//            createRequest(with: binaryImageData)
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Test - End
+    
+    
 }

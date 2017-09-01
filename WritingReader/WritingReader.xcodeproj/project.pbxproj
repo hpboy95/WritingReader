@@ -10,6 +10,7 @@
 		51F1B7A400D53DD5A8761755 /* Pods_WritingReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61FBB920E8929EE0D26180CC /* Pods_WritingReader.framework */; };
 		863032169A18745BDDBEBB52 /* Pods_WritingReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ECBD9D1874D514A1E4E3F56 /* Pods_WritingReaderTests.framework */; };
 		CB1B9B451E9DCEA900B0D974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1B9B441E9DCEA900B0D974 /* GoogleService-Info.plist */; };
+		CB7057AB1F5A008800B8CFEB /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB7057AA1F5A008800B8CFEB /* SwiftyJSON.framework */; };
 		CBACB0FB1EE1050D00F394FB /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBACB0FA1EE1050D00F394FB /* UserProfileViewController.swift */; };
 		CBB348B51EDF9EF200D491A6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB348B41EDF9EF200D491A6 /* SignUpViewController.swift */; };
 		CBB680781EA8260D0078A6C9 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB680771EA8260D0078A6C9 /* CameraViewController.swift */; };
@@ -50,6 +51,7 @@
 		B5D156CFEE7710FC1A05BD4E /* Pods-WritingReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WritingReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WritingReader/Pods-WritingReader.debug.xcconfig"; sourceTree = "<group>"; };
 		C741BF088E04625820DBC7DA /* Pods-WritingReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WritingReaderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WritingReaderTests/Pods-WritingReaderTests.release.xcconfig"; sourceTree = "<group>"; };
 		CB1B9B441E9DCEA900B0D974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB7057AA1F5A008800B8CFEB /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../Library/Developer/Xcode/DerivedData/WritingReader-cxtnnjveiyzekmfwvzulwlhjuyxh/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		CBACB0FA1EE1050D00F394FB /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		CBB348B41EDF9EF200D491A6 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CBB680771EA8260D0078A6C9 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB7057AB1F5A008800B8CFEB /* SwiftyJSON.framework in Frameworks */,
 				51F1B7A400D53DD5A8761755 /* Pods_WritingReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,11 +116,35 @@
 		A66616113F0349978C26C271 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CB7057AA1F5A008800B8CFEB /* SwiftyJSON.framework */,
 				61FBB920E8929EE0D26180CC /* Pods_WritingReader.framework */,
 				3ECBD9D1874D514A1E4E3F56 /* Pods_WritingReaderTests.framework */,
 				74F2A18CC167369EEB62AA89 /* Pods_WritingReaderUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CB40D96F1F4E0B4F00E55482 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		CB40D9701F4E0B5400E55482 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		CB40D9711F4E0B5900E55482 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CBB348B41EDF9EF200D491A6 /* SignUpViewController.swift */,
+				CBACB0FA1EE1050D00F394FB /* UserProfileViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		E6FFAD0B1E3689B900953EF0 = {
@@ -145,6 +172,9 @@
 		E6FFAD161E3689B900953EF0 /* WritingReader */ = {
 			isa = PBXGroup;
 			children = (
+				CB40D9711F4E0B5900E55482 /* Controller */,
+				CB40D9701F4E0B5400E55482 /* View */,
+				CB40D96F1F4E0B4F00E55482 /* Model */,
 				E6FFAD171E3689B900953EF0 /* AppDelegate.swift */,
 				E6FFAD191E3689B900953EF0 /* ViewController.swift */,
 				E6FFAD1B1E3689B900953EF0 /* Main.storyboard */,
@@ -153,8 +183,6 @@
 				E6FFAD201E3689B900953EF0 /* LaunchScreen.storyboard */,
 				E6FFAD231E3689B900953EF0 /* Info.plist */,
 				CBB680771EA8260D0078A6C9 /* CameraViewController.swift */,
-				CBB348B41EDF9EF200D491A6 /* SignUpViewController.swift */,
-				CBACB0FA1EE1050D00F394FB /* UserProfileViewController.swift */,
 			);
 			path = WritingReader;
 			sourceTree = "<group>";
@@ -254,7 +282,7 @@
 				TargetAttributes = {
 					E6FFAD131E3689B900953EF0 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 7BHCDJ55EZ;
+						DevelopmentTeam = F7VAV7GQ54;
 						ProvisioningStyle = Automatic;
 					};
 					E6FFAD271E3689B900953EF0 = {
@@ -619,7 +647,7 @@
 			baseConfigurationReference = B5D156CFEE7710FC1A05BD4E /* Pods-WritingReader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7BHCDJ55EZ;
+				DEVELOPMENT_TEAM = F7VAV7GQ54;
 				INFOPLIST_FILE = WritingReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HP.WritingReader;
@@ -633,7 +661,7 @@
 			baseConfigurationReference = 70DC9924A67F58A9B5710B34 /* Pods-WritingReader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7BHCDJ55EZ;
+				DEVELOPMENT_TEAM = F7VAV7GQ54;
 				INFOPLIST_FILE = WritingReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HP.WritingReader;

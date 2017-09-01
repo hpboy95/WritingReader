@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {                       // Do any additional setup after loading the view.
         super.viewDidLoad()
@@ -22,12 +22,18 @@ class SignUpViewController: UIViewController {
         self.ref = FIRDatabase.database().reference()
         
         self.activityIndicator.isHidden = true
-
+        self.activityIndicator.hidesWhenStopped = true
+        
+        view.addSubview(activityIndicator)
     }
 
     override func didReceiveMemoryWarning() {           // Dispose of any resources that can be recreated.
         super.didReceiveMemoryWarning()
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        //scrollView.contentSize = CGSize(width: 375, height: 1500)
     }
     
     //  Instantiate the reference to our database.
@@ -47,6 +53,12 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confPasswordTextField: UITextField!
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    //  ScrollView to adjust the view when typing requires it.
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    
+    @IBOutlet weak var innerView: UIView!
     
     //  Sign up user if the form is filled out correctly.
     @IBAction func SignUp(_ sender: UIButton) {
@@ -115,7 +127,7 @@ class SignUpViewController: UIViewController {
     //  Register user, assuming data was filled correctly. 
     func registerUser(fNameTF: UITextField, lNameTF: UITextField, emailTF:UITextField, passwordTF: UITextField, actInd: UIActivityIndicatorView){
         
-        actInd.isHidden = false
+        //actInd.isHidden = false
         
         actInd.startAnimating()
         
@@ -146,7 +158,7 @@ class SignUpViewController: UIViewController {
             }
             
             let usersReference = self.ref.child("Users").child(uid)
-            let values = ["first name": name, "last name": lastName,"email": email]
+            let values = ["First_Name": name, "Last_Name": lastName,"Email": email]
 
             usersReference.updateChildValues(values, withCompletionBlock: {
                 (error, ref) in
@@ -170,5 +182,47 @@ class SignUpViewController: UIViewController {
     }
     
     
+    //  Function to go to the next UITextField whenver the Next button is available on the keyboard.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        // Increment the tag of UITextField by 1.
+        if let nextTextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextTextField.becomeFirstResponder()
+        }
+        else {
+            // Remove keyboard.
+            textField.resignFirstResponder()
+        }
+        
+        return false
+        
+    }
+    
+    //  Function to readjust the view if the keyboard covers the current UITextField.
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+
+        //  Move the innerView a little higher so that the textField can be seen.
+        switch textField {
+            
+        case passwordTextField:
+            
+            self.scrollView.setContentOffset(CGPoint(x:0, y:250) , animated: true)
+            break
+            
+        case confPasswordTextField:
+            
+            self.scrollView.setContentOffset(CGPoint(x:0, y:250) , animated: true)
+            break
+            
+        default:
+            break
+        }
+    }
+    
+    
+    //  Function to readjust the view if the user ends editing the current UITextField.
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
+    }
     
 }
