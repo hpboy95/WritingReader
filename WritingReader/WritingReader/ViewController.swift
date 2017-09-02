@@ -32,7 +32,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
+
     //  Perform the sign in with the given login credentials.
     @IBAction func signIn(_ sender: UIButton) {
         
