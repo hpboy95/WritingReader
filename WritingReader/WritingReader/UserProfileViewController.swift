@@ -52,7 +52,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             ref.child("Users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String: AnyObject]{
-                    self.myLabel.text = dictionary["first name"] as? String
+                    //self.myLabel.text = dictionary["first name"] as? String
                 }
                 
             }, withCancel: nil)
@@ -67,7 +67,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
             print(logoutError)
         }
         
-        let controller = ViewController()
+        let controller = SignInViewController()
         present(controller, animated: true, completion: nil)
     }
     /*
