@@ -122,7 +122,7 @@ extension UserProfileViewController {
             self.spinner.stopAnimating()
             self.imageView.isHidden = true
             self.labelResults.isHidden = false
-            self.faceResults.isHidden = false
+            self.faceResults.isHidden = true
             self.faceResults.text = ""
             
             // Check for errors
@@ -133,6 +133,7 @@ extension UserProfileViewController {
                 print(json)
                 let responses: JSON = json["responses"][0]
                 
+                /*
                 // Get face annotations
                 let faceAnnotations: JSON = responses["faceAnnotations"]
                 if faceAnnotations != nil {
@@ -164,7 +165,35 @@ extension UserProfileViewController {
                 } else {
                     self.faceResults.text = "No faces found"
                 }
+                */
                 
+                // Get converted text
+                let labelAnnotations: JSON = responses["textAnnotations"]
+                let numLabels: Int = labelAnnotations.count
+                var labels: Array<String> = []
+                if numLabels > 0 {
+                    var labelResultsText:String = "OCR Result: "
+                    for index in 0..<numLabels {
+                        let label = labelAnnotations[index]["description"].stringValue
+                        if labelAnnotations[index]["locale"].exists() {
+                            labels.append(label)
+                        }
+                        
+                    }
+                    for label in labels {
+                        // if it's not the last item add a comma
+                        if labels[labels.count - 1] != label {
+                            labelResultsText += "\(label), "
+                        } else {
+                            labelResultsText += "\(label)"
+                        }
+                    }
+                    self.labelResults.text = labelResultsText
+                } else {
+                    self.labelResults.text = "No labels found"
+                    
+                }
+                /*
                 // Get label annotations
                 let labelAnnotations: JSON = responses["labelAnnotations"]
                 let numLabels: Int = labelAnnotations.count
@@ -188,6 +217,8 @@ extension UserProfileViewController {
                     self.labelResults.text = "No labels found"
                     
                 }
+ 
+                */
             }
         })
         
