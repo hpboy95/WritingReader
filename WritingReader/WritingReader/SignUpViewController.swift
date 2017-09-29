@@ -30,14 +30,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     //  Instantiate the reference to our database.
-    var ref:FIRDatabaseReference!
+    var ref:DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         confPasswordTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         
         activityIndicator.isHidden = true
         activityIndicator.hidesWhenStopped = true
@@ -123,7 +123,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
         
         //  Create and register user's profile in the database.
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             
          if error != nil{                           //  Error while registering the user.
             actInd.stopAnimating()

@@ -12,26 +12,41 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseStorage
 import SwiftyJSON
 
 class UserProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    
-    
+    //  Mark: - Properties
     @IBOutlet weak var myLabel: UILabel!
-    var ref:FIRDatabaseReference!
     
     @IBOutlet weak var labelResults: UITextField!
     
     @IBOutlet weak var faceResults: UITextField!
     
     @IBOutlet weak var imageView: UIImageView!
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+    //  Mark: - Variables
+    var ref:DatabaseReference!
+    
+    let imagePicker = UIImagePickerController()
+    
+    let session = URLSession.shared
+    
+    var googleAPIKey = "AIzaSyBv-oL8NqvL0BpGWle979PufOOaF3ROz54"
+    
+    var googleURL: URL {
+        return URL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(googleAPIKey)")!
+    }
+    
+    var imgUUID:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         userLoggedIn()
         // Do any additional setup after loading the view.
     }
@@ -40,55 +55,25 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    
+ 
     func userLoggedIn(){
-        if FIRAuth.auth()?.currentUser?.uid == nil{
+        if Auth.auth().currentUser?.uid == nil{
             perform(#selector(manageLogout), with: nil, afterDelay: 0)
         }
         else{
-            let uid = FIRAuth.auth()?.currentUser?.uid
-            
-            ref.child("Users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-                if let dictionary = snapshot.value as? [String: AnyObject]{
-                    //self.myLabel.text = dictionary["first name"] as? String
-                }
-                
-            }, withCancel: nil)
-            
+            //  Do anything if user logs in successfully.
         }
     }
     
     func manageLogout(){
         do{
-            try FIRAuth.auth()?.signOut()
+            try Auth.auth().signOut()
         }catch let logoutError{
             print(logoutError)
         }
         
         let controller = SignInViewController()
         present(controller, animated: true, completion: nil)
-    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    
-    // Test - Start
-    let imagePicker = UIImagePickerController()
-    let session = URLSession.shared
-    
-    
-    var googleAPIKey = "AIzaSyBv-oL8NqvL0BpGWle979PufOOaF3ROz54"
-    var googleURL: URL {
-        return URL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(googleAPIKey)")!
     }
     
     @IBAction func pickImageButton(_ sender: UIButton) {
@@ -97,13 +82,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         present(imagePicker, animated: true, completion: nil)
     }
-    
-    
-    
-    
-    // Test - End
-    
-    
+  
 }
 
 /// Image processing
@@ -114,7 +93,6 @@ extension UserProfileViewController {
         
         // Update UI on the main thread
         DispatchQueue.main.async(execute: {
-            
             
             // Use SwiftyJSON to parse results
             let json = JSON(data: dataToParse)
@@ -189,8 +167,14 @@ extension UserProfileViewController {
                         }
                     }
                     self.labelResults.text = labelResultsText
+                    
+                    //test-start
+                    self.ref.child("Users").child((Auth.auth().currentUser?.uid)!).child("Images_Recognized").child(self.imgUUID).updateChildValues(["Text": labelResultsText])
+                    //test-end
                 } else {
                     self.labelResults.text = "No labels found"
+                    self.ref.child("Users").child((Auth.auth().currentUser?.uid)!).child("Images_Recognized").child(self.imgUUID).updateChildValues(["Text": "Unrecognizable"])//.setValue(["Text": "Unrecognizable"])
+                   
                     
                 }
                 /*
@@ -232,9 +216,42 @@ extension UserProfileViewController {
             faceResults.isHidden = true
             labelResults.isHidden = true
             
-            // Base64 encode the image and create the request
-            let binaryImageData = base64EncodeImage(pickedImage)
-            createRequest(with: binaryImageData)
+                imgUUID = NSUUID().uuidString
+                let storage = Storage.storage().reference().child("picture").child("\(imgUUID).png")
+                    if let uploadData = UIImagePNGRepresentation(pickedImage){
+                        storage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                            if error != nil{
+                                print(error.debugDescription)
+                                return
+                            }
+                            if let imageURL = metadata?.downloadURL()?.absoluteString {
+                                
+                                guard let uid = Auth.auth().currentUser?.uid else{
+                                    return
+                                }
+                                
+                                let userReference = self.ref.child("Users").child(uid).child("Images_Recognized").child(self.imgUUID)
+                                
+                                userReference.updateChildValues(["ImageURL": imageURL], withCompletionBlock:{ (error, ref) in
+                                    if (error != nil){
+                                        print(error?.localizedDescription ?? "Error saving user data")
+                                    }
+                                    else{
+                                        print("Picture successfully uploaded!")
+                                    }
+                                })
+                                
+                                DispatchQueue.main.async {
+                                    // Base64 encode the image and create the request
+                                    let binaryImageData = self.base64EncodeImage(pickedImage)
+                                    self.createRequest(with: binaryImageData)
+                                    
+                                    //  Register any tapping that the user makes when this process finishes.
+                                    UIApplication.shared.endIgnoringInteractionEvents()
+                                }
+                            }
+                        })
+                    }
         }
         
         dismiss(animated: true, completion: nil)
@@ -272,6 +289,7 @@ extension UserProfileViewController {
     }
     
     func createRequest(with imageBase64: String) {
+   
         // Create our request URL
         
         var request = URLRequest(url: googleURL)
@@ -316,9 +334,10 @@ extension UserProfileViewController {
         let task: URLSessionDataTask = session.dataTask(with: request) { (data, response, error) in
             guard let data = data, error == nil else {
                 print(error?.localizedDescription ?? "")
+            
                 return
             }
-            
+           
             self.analyzeResults(data)
         }
         

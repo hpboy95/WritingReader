@@ -15,7 +15,7 @@ class SignInViewController: UIViewController {
     
     // MARK: - Properties
     
-    var ref:FIRDatabaseReference!
+    var ref:DatabaseReference!
     
     @IBOutlet weak var emailTextField: UITextField!
     
@@ -29,7 +29,7 @@ class SignInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         registerNotifications()
         setupGestureRecognizers()
         
@@ -54,7 +54,7 @@ class SignInViewController: UIViewController {
         UIApplication.shared.beginIgnoringInteractionEvents()
         activityIndicator.startAnimating()
         
-        FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: {(user, error) in
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: {(user, error) in
             
             //  Invalid Log in
             if error != nil{
