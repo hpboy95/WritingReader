@@ -217,7 +217,7 @@ extension UserProfileViewController {
             labelResults.isHidden = true
             
                 imgUUID = NSUUID().uuidString
-                let storage = Storage.storage().reference().child("picture").child("\(imgUUID).png")
+                let storage = Storage.storage().reference().child("picture").child("\(imgUUID!).png")
                     if let uploadData = UIImagePNGRepresentation(pickedImage){
                         storage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                             if error != nil{
