@@ -11,9 +11,13 @@
 		863032169A18745BDDBEBB52 /* Pods_WritingReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ECBD9D1874D514A1E4E3F56 /* Pods_WritingReaderTests.framework */; };
 		CB1B9B451E9DCEA900B0D974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1B9B441E9DCEA900B0D974 /* GoogleService-Info.plist */; };
 		CB7057AB1F5A008800B8CFEB /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB7057AA1F5A008800B8CFEB /* SwiftyJSON.framework */; };
+		CBAB5D9B1F8827BB00F7761E /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAB5D9A1F8827BB00F7761E /* HomeScreenViewController.swift */; };
+		CBAB5D9E1F8829F300F7761E /* HomeScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAB5D9C1F8829F300F7761E /* HomeScreenCollectionViewCell.swift */; };
+		CBAB5D9F1F8829F300F7761E /* HomeScreenCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBAB5D9D1F8829F300F7761E /* HomeScreenCollectionViewCell.xib */; };
 		CBACB0FB1EE1050D00F394FB /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBACB0FA1EE1050D00F394FB /* UserProfileViewController.swift */; };
 		CBB348B51EDF9EF200D491A6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB348B41EDF9EF200D491A6 /* SignUpViewController.swift */; };
 		CBB680781EA8260D0078A6C9 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB680771EA8260D0078A6C9 /* CameraViewController.swift */; };
+		CBD15DC31F8FFC9800CF6164 /* UIImage+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD15DC21F8FFC9800CF6164 /* UIImage+ext.swift */; };
 		D43D94292696F2FBD57D6775 /* Pods_WritingReaderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F2A18CC167369EEB62AA89 /* Pods_WritingReaderUITests.framework */; };
 		E6FFAD181E3689B900953EF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FFAD171E3689B900953EF0 /* AppDelegate.swift */; };
 		E6FFAD1A1E3689B900953EF0 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FFAD191E3689B900953EF0 /* SignInViewController.swift */; };
@@ -52,9 +56,13 @@
 		C741BF088E04625820DBC7DA /* Pods-WritingReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WritingReaderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WritingReaderTests/Pods-WritingReaderTests.release.xcconfig"; sourceTree = "<group>"; };
 		CB1B9B441E9DCEA900B0D974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB7057AA1F5A008800B8CFEB /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../Library/Developer/Xcode/DerivedData/WritingReader-cxtnnjveiyzekmfwvzulwlhjuyxh/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		CBAB5D9A1F8827BB00F7761E /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		CBAB5D9C1F8829F300F7761E /* HomeScreenCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenCollectionViewCell.swift; sourceTree = "<group>"; };
+		CBAB5D9D1F8829F300F7761E /* HomeScreenCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenCollectionViewCell.xib; sourceTree = "<group>"; };
 		CBACB0FA1EE1050D00F394FB /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		CBB348B41EDF9EF200D491A6 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CBB680771EA8260D0078A6C9 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		CBD15DC21F8FFC9800CF6164 /* UIImage+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ext.swift"; sourceTree = "<group>"; };
 		DEAB42E3BA2CA110B6156055 /* Pods-WritingReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WritingReaderUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WritingReaderUITests/Pods-WritingReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6FFAD141E3689B900953EF0 /* WritingReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WritingReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6FFAD171E3689B900953EF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +142,8 @@
 		CB40D9701F4E0B5400E55482 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CBAB5D9C1F8829F300F7761E /* HomeScreenCollectionViewCell.swift */,
+				CBAB5D9D1F8829F300F7761E /* HomeScreenCollectionViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -144,8 +154,17 @@
 				CBB348B41EDF9EF200D491A6 /* SignUpViewController.swift */,
 				CBACB0FA1EE1050D00F394FB /* UserProfileViewController.swift */,
 				E6FFAD191E3689B900953EF0 /* SignInViewController.swift */,
+				CBAB5D9A1F8827BB00F7761E /* HomeScreenViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		CBD15DC11F8FFC8600CF6164 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CBD15DC21F8FFC9800CF6164 /* UIImage+ext.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		E6FFAD0B1E3689B900953EF0 = {
@@ -173,6 +192,7 @@
 		E6FFAD161E3689B900953EF0 /* WritingReader */ = {
 			isa = PBXGroup;
 			children = (
+				CBD15DC11F8FFC8600CF6164 /* Helpers */,
 				CB40D9711F4E0B5900E55482 /* Controller */,
 				CB40D9701F4E0B5400E55482 /* View */,
 				CB40D96F1F4E0B4F00E55482 /* Model */,
@@ -324,6 +344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBAB5D9F1F8829F300F7761E /* HomeScreenCollectionViewCell.xib in Resources */,
 				E6FFAD221E3689B900953EF0 /* LaunchScreen.storyboard in Resources */,
 				CB1B9B451E9DCEA900B0D974 /* GoogleService-Info.plist in Resources */,
 				E6FFAD1F1E3689B900953EF0 /* Assets.xcassets in Resources */,
@@ -491,10 +512,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6FFAD1A1E3689B900953EF0 /* SignInViewController.swift in Sources */,
+				CBD15DC31F8FFC9800CF6164 /* UIImage+ext.swift in Sources */,
 				CBACB0FB1EE1050D00F394FB /* UserProfileViewController.swift in Sources */,
+				CBAB5D9E1F8829F300F7761E /* HomeScreenCollectionViewCell.swift in Sources */,
 				E6FFAD181E3689B900953EF0 /* AppDelegate.swift in Sources */,
 				CBB348B51EDF9EF200D491A6 /* SignUpViewController.swift in Sources */,
 				CBB680781EA8260D0078A6C9 /* CameraViewController.swift in Sources */,
+				CBAB5D9B1F8827BB00F7761E /* HomeScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
