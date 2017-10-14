@@ -68,7 +68,8 @@ class SignInViewController: UIViewController {
                 print("\n\nSuccessfully Logged In...Welcome\n")
                 
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyBoard.instantiateViewController(withIdentifier: "userprofileVC")
+                //let controller = storyBoard.instantiateViewController(withIdentifier: "userprofileVC")
+                let controller = storyBoard.instantiateViewController(withIdentifier: "HomeScreenVC")
                 self.present(controller, animated: true, completion: nil)
                 
             }

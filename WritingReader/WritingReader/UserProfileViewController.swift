@@ -15,7 +15,7 @@ import FirebaseAuth
 import FirebaseStorage
 import SwiftyJSON
 
-class UserProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UserProfileViewController: UIViewController{
 
     //  Mark: - Properties
     @IBOutlet weak var myLabel: UILabel!
@@ -26,13 +26,12 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var processingView: UIView!
+    
     
     //  Mark: - Variables
     var ref:DatabaseReference!
-    
-    let imagePicker = UIImagePickerController()
-    
+
     let session = URLSession.shared
     
     var googleAPIKey = "AIzaSyBv-oL8NqvL0BpGWle979PufOOaF3ROz54"
@@ -45,17 +44,16 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imagePicker.delegate = self
+        
         ref = Database.database().reference()
         userLoggedIn()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
- 
+    
     func userLoggedIn(){
         if Auth.auth().currentUser?.uid == nil{
             perform(#selector(manageLogout), with: nil, afterDelay: 0)
@@ -75,14 +73,6 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         let controller = SignInViewController()
         present(controller, animated: true, completion: nil)
     }
-    
-    @IBAction func pickImageButton(_ sender: UIButton) {
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
-        
-        present(imagePicker, animated: true, completion: nil)
-    }
-  
 }
 
 /// Image processing
@@ -97,7 +87,6 @@ extension UserProfileViewController {
             // Use SwiftyJSON to parse results
             let json = JSON(data: dataToParse)
             let errorObj: JSON = json["error"]
-            self.spinner.stopAnimating()
             self.imageView.isHidden = true
             self.labelResults.isHidden = false
             self.faceResults.isHidden = true
@@ -110,40 +99,6 @@ extension UserProfileViewController {
                 // Parse the response
                 print(json)
                 let responses: JSON = json["responses"][0]
-                
-                /*
-                // Get face annotations
-                let faceAnnotations: JSON = responses["faceAnnotations"]
-                if faceAnnotations != nil {
-                    let emotions: Array<String> = ["joy", "sorrow", "surprise", "anger"]
-                    
-                    let numPeopleDetected:Int = faceAnnotations.count
-                    
-                    self.faceResults.text = "People detected: \(numPeopleDetected)\n\nEmotions detected:\n"
-                    
-                    var emotionTotals: [String: Double] = ["sorrow": 0, "joy": 0, "surprise": 0, "anger": 0]
-                    var emotionLikelihoods: [String: Double] = ["VERY_LIKELY": 0.9, "LIKELY": 0.75, "POSSIBLE": 0.5, "UNLIKELY":0.25, "VERY_UNLIKELY": 0.0]
-                    
-                    for index in 0..<numPeopleDetected {
-                        let personData:JSON = faceAnnotations[index]
-                        
-                        // Sum all the detected emotions
-                        for emotion in emotions {
-                            let lookup = emotion + "Likelihood"
-                            let result:String = personData[lookup].stringValue
-                            emotionTotals[emotion]! += emotionLikelihoods[result]!
-                        }
-                    }
-                    // Get emotion likelihood as a % and display in UI
-                    for (emotion, total) in emotionTotals {
-                        let likelihood:Double = total / Double(numPeopleDetected)
-                        let percent: Int = Int(round(likelihood * 100))
-                        self.faceResults.text! += "\(emotion): \(percent)%\n"
-                    }
-                } else {
-                    self.faceResults.text = "No faces found"
-                }
-                */
                 
                 // Get converted text
                 let labelAnnotations: JSON = responses["textAnnotations"]
@@ -167,98 +122,14 @@ extension UserProfileViewController {
                         }
                     }
                     self.labelResults.text = labelResultsText
-                    
-                    //test-start
-                    self.ref.child("Users").child((Auth.auth().currentUser?.uid)!).child("Images_Recognized").child(self.imgUUID).updateChildValues(["Text": labelResultsText])
-                    //test-end
                 } else {
-                    self.labelResults.text = "No labels found"
-                    self.ref.child("Users").child((Auth.auth().currentUser?.uid)!).child("Images_Recognized").child(self.imgUUID).updateChildValues(["Text": "Unrecognizable"])//.setValue(["Text": "Unrecognizable"])
-                   
-                    
+                    self.labelResults.text = "Unrecognizable"
                 }
-                /*
-                // Get label annotations
-                let labelAnnotations: JSON = responses["labelAnnotations"]
-                let numLabels: Int = labelAnnotations.count
-                var labels: Array<String> = []
-                if numLabels > 0 {
-                    var labelResultsText:String = "Labels found: "
-                    for index in 0..<numLabels {
-                        let label = labelAnnotations[index]["description"].stringValue
-                        labels.append(label)
-                    }
-                    for label in labels {
-                        // if it's not the last item add a comma
-                        if labels[labels.count - 1] != label {
-                            labelResultsText += "\(label), "
-                        } else {
-                            labelResultsText += "\(label)"
-                        }
-                    }
-                    self.labelResults.text = labelResultsText
-                } else {
-                    self.labelResults.text = "No labels found"
-                    
-                }
- 
-                */
+                //test-start
+                self.processingView.isHidden = true
+                //test-end
             }
         })
-        
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.contentMode = .scaleAspectFit
-            imageView.isHidden = true // You could optionally display the image here by setting imageView.image = pickedImage
-            spinner.startAnimating()
-            faceResults.isHidden = true
-            labelResults.isHidden = true
-            
-                imgUUID = NSUUID().uuidString
-                let storage = Storage.storage().reference().child("picture").child("\(imgUUID!).png")
-                    if let uploadData = UIImagePNGRepresentation(pickedImage){
-                        storage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
-                            if error != nil{
-                                print(error.debugDescription)
-                                return
-                            }
-                            if let imageURL = metadata?.downloadURL()?.absoluteString {
-                                
-                                guard let uid = Auth.auth().currentUser?.uid else{
-                                    return
-                                }
-                                
-                                let userReference = self.ref.child("Users").child(uid).child("Images_Recognized").child(self.imgUUID)
-                                
-                                userReference.updateChildValues(["ImageURL": imageURL], withCompletionBlock:{ (error, ref) in
-                                    if (error != nil){
-                                        print(error?.localizedDescription ?? "Error saving user data")
-                                    }
-                                    else{
-                                        print("Picture successfully uploaded!")
-                                    }
-                                })
-                                
-                                DispatchQueue.main.async {
-                                    // Base64 encode the image and create the request
-                                    let binaryImageData = self.base64EncodeImage(pickedImage)
-                                    self.createRequest(with: binaryImageData)
-                                    
-                                    //  Register any tapping that the user makes when this process finishes.
-                                    UIApplication.shared.endIgnoringInteractionEvents()
-                                }
-                            }
-                        })
-                    }
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
     }
     
     func resizeImage(_ imageSize: CGSize, image: UIImage) -> Data {
@@ -269,12 +140,48 @@ extension UserProfileViewController {
         UIGraphicsEndImageContext()
         return resizedImage!
     }
+
+    func storeImageWithRecognizedText(image: UIImage){
+        imgUUID = NSUUID().uuidString
+        let storage = Storage.storage().reference().child("picture").child("\(imgUUID!).png")
+        if let uploadData = UIImagePNGRepresentation(image){
+            storage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                if error != nil{
+                    print(error.debugDescription)
+                    return
+                }
+                if let imageURL = metadata?.downloadURL()?.absoluteString {
+                    
+                    guard let uid = Auth.auth().currentUser?.uid else{
+                        return
+                    }
+                    
+                    let userReference = self.ref.child("Users").child(uid).child("Images_Recognized").child(self.imgUUID)
+                    
+                    userReference.updateChildValues(["ImageURL": imageURL], withCompletionBlock:{ (error, ref) in
+                        if (error != nil){
+                            print(error?.localizedDescription ?? "Error saving user data")
+                        }
+                        else{
+                            print("Picture successfully uploaded!")
+                            self.ref.child("Users").child((Auth.auth().currentUser?.uid)!).child("Images_Recognized").child(self.imgUUID).updateChildValues(["Text": self.labelResults.text ?? "Unrecognizable"])
+                        }
+                    })
+                    
+                    DispatchQueue.main.async {
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                    }
+                }
+            })
+        }
+    }
 }
 
 
 /// Networking
 
 extension UserProfileViewController {
+    
     func base64EncodeImage(_ image: UIImage) -> String {
         var imagedata = UIImagePNGRepresentation(image)
         
@@ -289,9 +196,10 @@ extension UserProfileViewController {
     }
     
     func createRequest(with imageBase64: String) {
-   
-        // Create our request URL
         
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        // Create our request URL
         var request = URLRequest(url: googleURL)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -325,7 +233,7 @@ extension UserProfileViewController {
         request.httpBody = data
         
         // Run the request on a background thread
-        DispatchQueue.global().async { self.runRequestOnBackgroundThread(request) }
+        DispatchQueue.global().async { self.runRequestOnBackgroundThread(request)}
     }
     
     func runRequestOnBackgroundThread(_ request: URLRequest) {
