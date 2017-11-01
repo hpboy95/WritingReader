@@ -14,7 +14,6 @@ import FirebaseAuth
 class SignInViewController: UIViewController {
     
     // MARK: - Properties
-    // adrian comment
     
     var ref:DatabaseReference!
     
