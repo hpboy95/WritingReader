@@ -24,6 +24,11 @@ class UserProfileViewController: UIViewController{
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBAction func sharePressed(_ sender: Any) {
+        let activityVC = UIActivityViewController(activityItems: [convertedText.text], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        self.present(activityVC, animated: true, completion: nil)
+    }
     
     //  Mark: - Variables
     var ref:DatabaseReference!
