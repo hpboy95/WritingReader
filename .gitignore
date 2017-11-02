@@ -102,6 +102,4 @@ Carthage/Build.rbenv-vars
 # rbenv
 .rbenv-vars
 
-WritingReaderTests/
-WritingReaderUITests/
 Podfile.lock
