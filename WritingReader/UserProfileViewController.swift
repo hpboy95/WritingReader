@@ -36,6 +36,8 @@ class UserProfileViewController: UIViewController{
         return URL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(googleAPIKey)")!
     }
     
+    var chosenImage = UIImage()
+    
     var imgUUID:String!
     
     override func viewDidLoad() {
@@ -51,6 +53,8 @@ class UserProfileViewController: UIViewController{
         let transform: CGAffineTransform = CGAffineTransform(scaleX: 2, y: 2)
         self.activityIndicator.transform = transform
         self.activityIndicator.center = self.view.center
+        
+        imageView.image = chosenImage
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,7 +96,7 @@ extension UserProfileViewController {
             // Use SwiftyJSON to parse results
             let json = JSON(data: dataToParse)
             let errorObj: JSON = json["error"]
-            self.imageView.isHidden = true
+            //self.imageView.isHidden = true
             self.convertedText.isHidden = false
             
             // Check for errors

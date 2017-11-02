@@ -87,6 +87,10 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
                 let binaryImageData = destination.base64EncodeImage(chosenImage)
                 destination.createRequest(with: binaryImageData)
                 destination.storeImageWithRecognizedText(image: chosenImage)
+                    // Send the chosen image and set it on the UserProfileViewController
+                    if let image = self.chosenImage as UIImage! {
+                        destination.chosenImage = image
+                    }
             }
         }
     }
