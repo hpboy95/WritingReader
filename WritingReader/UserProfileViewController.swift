@@ -15,7 +15,7 @@ import FirebaseAuth
 import FirebaseStorage
 import SwiftyJSON
 
-class UserProfileViewController: UIViewController{
+class UserProfileViewController: UIViewController, UITextFieldDelegate{
 
     //  Mark: - Properties
     @IBOutlet weak var imageView: UIImageView!
@@ -263,7 +263,14 @@ extension UserProfileViewController {
         
         task.resume()
     }
+    
+    // TODO: Create working Segue here.
+    //This turns the UITextfield into a button
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return false
+    }
 }
+
 
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
@@ -289,4 +296,5 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
         return rhs < lhs
     }
 }
+
 
