@@ -20,7 +20,7 @@ class UserProfileViewController: UIViewController, UITextFieldDelegate{
     //  Mark: - Properties
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var convertedText: UITextView!
+    @IBOutlet weak var convertedText: UITextField!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -53,7 +53,9 @@ class UserProfileViewController: UIViewController, UITextFieldDelegate{
         
         self.convertedText.layer.borderWidth = 0.5
         self.convertedText.layer.borderColor = UIColor.lightGray.cgColor
-        self.convertedText.layer.backgroundColor = UIColor.white.cgColor
+        self.convertedText.backgroundColor = UIColor.lightGray
+        self.convertedText.allowsEditingTextAttributes = false
+        self.convertedText.delegate = self
         self.activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         let transform: CGAffineTransform = CGAffineTransform(scaleX: 2, y: 2)
         self.activityIndicator.transform = transform
@@ -86,10 +88,22 @@ class UserProfileViewController: UIViewController, UITextFieldDelegate{
         let controller = SignInViewController()
         present(controller, animated: true, completion: nil)
     }
+    
+    //This turns the UITextfield into a button
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        self.performSegue(withIdentifier: "TextEditSegue", sender: self)
+        return false
+    }
+    
+    //Pass text data to the text editing screen
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? TextEditViewController{
+            dest.setEditingString(str: self.convertedText.text!)
+        }
+    }
 }
 
 /// Image processing
-
 extension UserProfileViewController {
     
     func analyzeResults(_ dataToParse: Data) {
@@ -262,12 +276,6 @@ extension UserProfileViewController {
         }
         
         task.resume()
-    }
-    
-    // TODO: Create working Segue here.
-    //This turns the UITextfield into a button
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return false
     }
 }
 

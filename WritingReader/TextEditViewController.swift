@@ -11,6 +11,7 @@ import UIKit
 class TextEditViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     //Class Variables
+    var convertedText = ""
     var fullText = ""
     var numberString = "1"
     var lineNumber = 1
@@ -45,6 +46,7 @@ class TextEditViewController: UIViewController, UITextViewDelegate, UIPickerView
         lineNumberText.font = UIFont.systemFont(ofSize: 16)
         
         ocrText.delegate = self
+        ocrText.text = convertedText
         ocrText.font = UIFont.systemFont(ofSize: 16)
         
         sizePicker.translatesAutoresizingMaskIntoConstraints = false
@@ -108,9 +110,15 @@ class TextEditViewController: UIViewController, UITextViewDelegate, UIPickerView
         sizePicker.isHidden = true
     }
     
+    //Prevent testField from being editable and enable selection functionality
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         sizePicker.isHidden = false
         return false
+    }
+    
+    //RPC recieving function
+    func setEditingString(str: String){
+        self.convertedText = str
     }
     
 }
