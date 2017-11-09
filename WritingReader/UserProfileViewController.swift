@@ -69,6 +69,16 @@ class UserProfileViewController: UIViewController, UITextFieldDelegate{
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.clipsToBounds = true
+        navigationController?.navigationBar.backItem?.title = ""
+        navigationController?.navigationBar.tintColor = UIColor.black
+    }
+    
     func userLoggedIn(){
         if Auth.auth().currentUser?.uid == nil{
             perform(#selector(manageLogout), with: nil, afterDelay: 0)
@@ -113,7 +123,7 @@ extension UserProfileViewController {
         DispatchQueue.main.async(execute: {
             
             // Use SwiftyJSON to parse results
-            let json = JSON(data: dataToParse)
+            let json = try! JSON(data: dataToParse)
             let errorObj: JSON = json["error"]
             //self.imageView.isHidden = true
             self.convertedText.isHidden = false
