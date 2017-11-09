@@ -69,6 +69,17 @@ class UserProfileViewController: UIViewController, UITextFieldDelegate{
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.clipsToBounds = true
+        navigationController?.navigationBar.backItem?.title = ""
+        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.title = "User Profile"
+    }
+    
     func userLoggedIn(){
         if Auth.auth().currentUser?.uid == nil{
             perform(#selector(manageLogout), with: nil, afterDelay: 0)

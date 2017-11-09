@@ -45,7 +45,7 @@ class SignInViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     //  Perform the sign in with the given login credentials.
@@ -68,10 +68,10 @@ class SignInViewController: UIViewController {
                 print("\n\nSuccessfully Logged In...Welcome\n")
                 
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                //let controller = storyBoard.instantiateViewController(withIdentifier: "userprofileVC")
-                let controller = storyBoard.instantiateViewController(withIdentifier: "HomeScreenVC")
-                self.present(controller, animated: true, completion: nil)
-                
+
+                let VC = storyBoard.instantiateViewController(withIdentifier: "HomeScreenVC") as! HomeScreenViewController
+
+                self.navigationController?.pushViewController(VC, animated: true)
             }
             
             UIApplication.shared.endIgnoringInteractionEvents()

@@ -48,6 +48,17 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.clipsToBounds = true
+        navigationController?.navigationBar.backItem?.title = ""
+        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.title = "Home Screen"
+    }
+    
     func getImages(){
         
         let userID:String = (Auth.auth().currentUser?.uid)!
