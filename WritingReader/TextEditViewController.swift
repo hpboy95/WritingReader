@@ -89,7 +89,7 @@ class TextEditViewController: UIViewController, UITextViewDelegate, UIPickerView
         lineNumber = 1
         fullText = textView.text!
         //Cycle through the text looking for newline characters
-        for text in fullText{
+        for text in fullText.characters{
             if text == "\n" {
                 lineNumber = lineNumber + 1
                 numberString = ""
