@@ -24,11 +24,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    //@IBOutlet weak var scrollView: UIScrollView!
-    
-    @IBOutlet weak var innerView: UIView!
-    
-    
     //  Instantiate the reference to our database.
     var ref:DatabaseReference!
     
@@ -187,33 +182,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
         
         return false
-    }
-    
-    //  Function to readjust the view if the keyboard covers the current UITextField.
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-
-        //  Move the innerView a little higher so that the textField can be seen.
-//        switch textField {
-//            
-//        case passwordTextField:
-//            
-//            self.scrollView.setContentOffset(CGPoint(x:0, y:250) , animated: true)
-//            break
-//            
-//        case confPasswordTextField:
-//            
-//            self.scrollView.setContentOffset(CGPoint(x:0, y:250) , animated: true)
-//            break
-//            
-//        default:
-//            break
-//        }
-    }
-    
-    
-    //  Function to readjust the view if the user ends editing the current UITextField.
-    func textFieldDidEndEditing(_ textField: UITextField) {
-       // scrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
     }
     
 }
