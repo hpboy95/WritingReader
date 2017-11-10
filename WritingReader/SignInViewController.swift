@@ -84,8 +84,8 @@ class SignInViewController: UIViewController {
     @IBAction func signUp(_ sender: UIButton) {
         
         let storyBoard = UIStoryboard(name:"Main", bundle: nil)
-        let controller = storyBoard.instantiateViewController(withIdentifier: "signupVC")
-        self.present(controller, animated: false, completion: nil)
+        let VC = storyBoard.instantiateViewController(withIdentifier: "signupVC")
+        navigationController?.pushViewController(VC, animated: true)
         
     }
     

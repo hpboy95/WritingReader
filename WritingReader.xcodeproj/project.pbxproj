@@ -305,7 +305,6 @@
 				TargetAttributes = {
 					E6FFAD131E3689B900953EF0 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = JBJZJ45R59;
 						ProvisioningStyle = Automatic;
 					};
 					E6FFAD271E3689B900953EF0 = {
@@ -697,7 +696,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JBJZJ45R59;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WritingReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HP.WritingReader;
@@ -714,7 +713,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JBJZJ45R59;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WritingReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HP.WritingReader;

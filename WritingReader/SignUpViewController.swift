@@ -24,7 +24,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    //@IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var innerView: UIView!
     
@@ -45,10 +45,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(activityIndicator)
     }
 
-    
     override func didReceiveMemoryWarning() {           // Dispose of any resources that can be recreated.
         super.didReceiveMemoryWarning()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.clipsToBounds = true
+        navigationController?.navigationBar.backItem?.title = ""
+        navigationController?.navigationBar.tintColor = UIColor.black
+        title = "Create an Account"
     }
     
     //  Sign up user if the form is filled out correctly.
@@ -183,32 +193,27 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
 
         //  Move the innerView a little higher so that the textField can be seen.
-        switch textField {
-            
-        case passwordTextField:
-            
-            self.scrollView.setContentOffset(CGPoint(x:0, y:250) , animated: true)
-            break
-            
-        case confPasswordTextField:
-            
-            self.scrollView.setContentOffset(CGPoint(x:0, y:250) , animated: true)
-            break
-            
-        default:
-            break
-        }
+//        switch textField {
+//            
+//        case passwordTextField:
+//            
+//            self.scrollView.setContentOffset(CGPoint(x:0, y:250) , animated: true)
+//            break
+//            
+//        case confPasswordTextField:
+//            
+//            self.scrollView.setContentOffset(CGPoint(x:0, y:250) , animated: true)
+//            break
+//            
+//        default:
+//            break
+//        }
     }
     
     
     //  Function to readjust the view if the user ends editing the current UITextField.
     func textFieldDidEndEditing(_ textField: UITextField) {
-        scrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
+       // scrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
     }
-    
-    @IBAction func cancel(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     
 }

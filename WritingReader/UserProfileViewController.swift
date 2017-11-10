@@ -100,6 +100,11 @@ class UserProfileViewController: UIViewController, UITextFieldDelegate{
         present(controller, animated: true, completion: nil)
     }
     
+    @IBAction func saveButton(_ sender: UIButton) {
+        
+    }
+    
+    
     //This turns the UITextfield into a button
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         self.performSegue(withIdentifier: "TextEditSegue", sender: self)
@@ -180,7 +185,9 @@ extension UserProfileViewController {
 
     func storeImageWithRecognizedText(image: UIImage){
         imgUUID = NSUUID().uuidString
+        
         let storage = Storage.storage().reference().child("picture").child("\(imgUUID!).png")
+        
         if let uploadData = UIImagePNGRepresentation(image){
             storage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil{
