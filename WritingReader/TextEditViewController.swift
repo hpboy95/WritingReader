@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol detectedTextDelegate{
+    func userEditedOriginalYieldedText(_ textChanged:Bool, _ text:String)
+}
+
 class TextEditViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     //Class Variables
@@ -16,6 +20,8 @@ class TextEditViewController: UIViewController, UITextViewDelegate, UIPickerView
     var numberString = "1"
     var lineNumber = 1
     let sizes = [12, 14, 16, 18, 20]
+    
+    var delegate:detectedTextDelegate?
     
     //View Objects
     @IBOutlet weak var textColorLabel: UILabel!
@@ -100,6 +106,8 @@ class TextEditViewController: UIViewController, UITextViewDelegate, UIPickerView
             }
         }
         lineNumberText.text = numberString
+        
+        delegate?.userEditedOriginalYieldedText(true, ocrText.text)
     }
     
     //Ensure that the using the size picker auto updates view and then hides

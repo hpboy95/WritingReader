@@ -15,7 +15,8 @@ import FirebaseAuth
 import FirebaseStorage
 import SwiftyJSON
 
-class UserProfileViewController: UIViewController, UITextFieldDelegate{
+
+class UserProfileViewController: UIViewController, UITextFieldDelegate, detectedTextDelegate{
 
     //  Mark: - Properties
     @IBOutlet weak var imageView: UIImageView!
@@ -44,6 +45,8 @@ class UserProfileViewController: UIViewController, UITextFieldDelegate{
     var chosenImage = UIImage()
     
     var imgUUID:String!
+    
+    var originalTextEdited:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +80,7 @@ class UserProfileViewController: UIViewController, UITextFieldDelegate{
         navigationController?.navigationBar.clipsToBounds = true
         navigationController?.navigationBar.backItem?.title = ""
         navigationController?.navigationBar.tintColor = UIColor.black
-        navigationController?.title = "User Profile"
+        title = "OCR Results"
     }
     
     func userLoggedIn(){
@@ -102,6 +105,11 @@ class UserProfileViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func saveButton(_ sender: UIButton) {
         
+        if originalTextEdited == true {
+            save(text: convertedText.text!)
+        }else{
+            storeImageWithRecognizedText(image: chosenImage)
+        }
     }
     
     
@@ -115,6 +123,20 @@ class UserProfileViewController: UIViewController, UITextFieldDelegate{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? TextEditViewController{
             dest.setEditingString(str: self.convertedText.text!)
+        }
+        
+        if segue.identifier == "TextEditSegue"{
+            if let dest = segue.destination as? TextEditViewController{
+                dest.delegate = self
+            }
+        }
+    }
+    
+    internal func userEditedOriginalYieldedText(_ textChanged: Bool, _ text: String) {
+        
+        if text.isEmpty == false{
+            originalTextEdited = textChanged
+            convertedText.text = text
         }
     }
 }
@@ -169,7 +191,10 @@ extension UserProfileViewController {
                 }
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
-
+                
+                DispatchQueue.main.async {
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                }
             }
         })
     }
@@ -211,13 +236,13 @@ extension UserProfileViewController {
                             self.ref.child("Users").child((Auth.auth().currentUser?.uid)!).child("Images_Recognized").child(self.imgUUID).updateChildValues(["Text": self.convertedText.text ?? "Unrecognizable"])
                         }
                     })
-                    
-                    DispatchQueue.main.async {
-                        UIApplication.shared.endIgnoringInteractionEvents()
-                    }
                 }
             })
         }
+    }
+    
+    func save(text:String){
+        self.ref.child("Users").child((Auth.auth().currentUser?.uid)!).child("Images_Recognized").child(self.imgUUID).updateChildValues(["Text": self.convertedText.text ?? "Unrecognizable"])
     }
 }
 
