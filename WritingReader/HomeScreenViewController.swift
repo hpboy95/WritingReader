@@ -16,6 +16,8 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
     // Mark: - Properties
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var selectedImage: UIImageView!
+    
     // Mark: - Variables
     var ref: DatabaseReference! = nil
     
@@ -41,6 +43,8 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
         
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
+        
+        selectedImage.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,13 +84,37 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
         })
     }
     
-    @IBAction func cameraRollButton(_ sender: UIButton) {
-        
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.modalPresentationStyle = .overFullScreen
-
-        present(imagePicker, animated: true, completion: nil)
-        
+    @IBAction func libraryButton(_ sender: UIButton) {
+        //Always ensure that the phone's camera is reachable
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+            print("has photo library")
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else {
+            print("No photolibrary")
+        }
+    }
+    
+    @IBAction func cameraButton(_ sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
+            print("has camera")
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+            
+        }
+        else{
+            print("no camera")
+        }
+    }
+    
+    @IBAction func ocrButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "CameraRollSegue", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -106,16 +134,14 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject: AnyObject]!){
+        selectedImage.image = image
+        selectedImage.isHidden = false
+        collectionView.isHidden = true
         
-        guard let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-            return
-        }
-        chosenImage = originalImage
-
-        dismiss(animated: true, completion: {
-            self.performSegue(withIdentifier: "CameraRollSegue", sender: nil)
-        })
+        chosenImage = image
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
