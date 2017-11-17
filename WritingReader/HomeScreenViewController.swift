@@ -18,6 +18,9 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBOutlet weak var selectedImage: UIImageView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    
     // Mark: - Variables
     var ref: DatabaseReference! = nil
     
@@ -45,6 +48,9 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
         imagePicker.allowsEditing = false
         
         selectedImage.isHidden = true
+        
+        activityIndicator.isHidden = true
+        activityIndicator.hidesWhenStopped = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,9 +64,14 @@ class HomeScreenViewController: UIViewController, UIImagePickerControllerDelegat
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.clipsToBounds = true
-        navigationController?.navigationBar.backItem?.title = ""
         navigationController?.navigationBar.tintColor = UIColor.black
         navigationController?.title = "Home Screen"
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOutButton))
+        navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName:UIFont(name: "BradleyHandITCTT-Bold",size: 17)!], for: .normal)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settingsButton))
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName:UIFont(name: "BradleyHandITCTT-Bold",size: 17)!], for: .normal)
     }
     
     func getImages(){
@@ -177,6 +188,39 @@ extension HomeScreenViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     
+}
+
+extension HomeScreenViewController{
+    
+    /*  Action exectuted when the Log Out button is pressed.    */
+    func logOutButton() {
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        activityIndicator.startAnimating()
+        
+        if Auth.auth().currentUser != nil {
+            do {
+                try Auth.auth().signOut()
+                print("logOut() was called")
+
+                
+            } catch let error as NSError {
+                print(error.localizedDescription)
+                UIApplication.shared.endIgnoringInteractionEvents()
+            }
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                _ = self.navigationController?.popViewController(animated: true)
+                UIApplication.shared.endIgnoringInteractionEvents()
+            }
+
+        }
+
+    }
+    
+    /*  Action executed when the Settings button is pressed.    */
+    func settingsButton(){
+        //  TODO.
+    }
 }
 
 
