@@ -80,6 +80,13 @@ class SignInViewController: UIViewController {
         
     }
     
+    @IBAction func forgotPasswordButton(_ sender: UIButton) {
+        let storyBoard = UIStoryboard(name:"Main", bundle: nil)
+        let VC = storyBoard.instantiateViewController(withIdentifier: "ForgotPasswordVC")
+        navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    
     //  Perform transition to the sign up view (signupVC) for the user to register.
     @IBAction func signUp(_ sender: UIButton) {
         

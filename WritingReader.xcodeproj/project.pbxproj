@@ -18,6 +18,7 @@
 		CBB348B51EDF9EF200D491A6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB348B41EDF9EF200D491A6 /* SignUpViewController.swift */; };
 		CBB680781EA8260D0078A6C9 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB680771EA8260D0078A6C9 /* CameraViewController.swift */; };
 		CBD15DC31F8FFC9800CF6164 /* UIImage+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD15DC21F8FFC9800CF6164 /* UIImage+ext.swift */; };
+		CBE0957D1FC50DA500037438 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE0957C1FC50DA500037438 /* ForgotPasswordViewController.swift */; };
 		D43D94292696F2FBD57D6775 /* Pods_WritingReaderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F2A18CC167369EEB62AA89 /* Pods_WritingReaderUITests.framework */; };
 		E6D0BC661FAC0BB400783171 /* TextEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D0BC651FAC0BB400783171 /* TextEditViewController.swift */; };
 		E6FFAD181E3689B900953EF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FFAD171E3689B900953EF0 /* AppDelegate.swift */; };
@@ -64,6 +65,7 @@
 		CBB348B41EDF9EF200D491A6 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CBB680771EA8260D0078A6C9 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		CBD15DC21F8FFC9800CF6164 /* UIImage+ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ext.swift"; sourceTree = "<group>"; };
+		CBE0957C1FC50DA500037438 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		DEAB42E3BA2CA110B6156055 /* Pods-WritingReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WritingReaderUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WritingReaderUITests/Pods-WritingReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6D0BC651FAC0BB400783171 /* TextEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditViewController.swift; sourceTree = "<group>"; };
 		E6FFAD141E3689B900953EF0 /* WritingReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WritingReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +160,7 @@
 				E6FFAD191E3689B900953EF0 /* SignInViewController.swift */,
 				CBAB5D9A1F8827BB00F7761E /* HomeScreenViewController.swift */,
 				E6D0BC651FAC0BB400783171 /* TextEditViewController.swift */,
+				CBE0957C1FC50DA500037438 /* ForgotPasswordViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -305,7 +308,7 @@
 				TargetAttributes = {
 					E6FFAD131E3689B900953EF0 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = JBJZJ45R59;
+						DevelopmentTeam = F7VAV7GQ54;
 						ProvisioningStyle = Automatic;
 					};
 					E6FFAD271E3689B900953EF0 = {
@@ -540,6 +543,7 @@
 				CBACB0FB1EE1050D00F394FB /* UserProfileViewController.swift in Sources */,
 				CBAB5D9E1F8829F300F7761E /* HomeScreenCollectionViewCell.swift in Sources */,
 				E6FFAD181E3689B900953EF0 /* AppDelegate.swift in Sources */,
+				CBE0957D1FC50DA500037438 /* ForgotPasswordViewController.swift in Sources */,
 				CBB348B51EDF9EF200D491A6 /* SignUpViewController.swift in Sources */,
 				CBB680781EA8260D0078A6C9 /* CameraViewController.swift in Sources */,
 				CBAB5D9B1F8827BB00F7761E /* HomeScreenViewController.swift in Sources */,
@@ -697,7 +701,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JBJZJ45R59;
+				DEVELOPMENT_TEAM = F7VAV7GQ54;
 				INFOPLIST_FILE = WritingReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HP.WritingReader2;
@@ -714,7 +718,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JBJZJ45R59;
+				DEVELOPMENT_TEAM = F7VAV7GQ54;
 				INFOPLIST_FILE = WritingReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = HP.WritingReader2;
