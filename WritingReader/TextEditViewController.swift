@@ -23,6 +23,8 @@ class TextEditViewController: UIViewController, UITextViewDelegate, UIPickerView
     
     var delegate:detectedTextDelegate?
     
+    let defaults:UserDefaults = UserDefaults.standard
+    
     //View Objects
     @IBOutlet weak var textColorLabel: UILabel!
     @IBOutlet weak var textFontLabel: UITextField!
@@ -59,6 +61,17 @@ class TextEditViewController: UIViewController, UITextViewDelegate, UIPickerView
         sizePicker.delegate = self
         sizePicker.dataSource = self
         sizePicker.isHidden = true
+        
+        if let spellCheck = defaults.value(forKey: "SpellChecker") as? Bool{
+            if spellCheck == true{
+               lineNumberText.autocorrectionType = .yes
+            } else{
+                lineNumberText.autocorrectionType = .no
+            }
+        }
+        
+        lineNumberText.autocorrectionType = .yes
+ 
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

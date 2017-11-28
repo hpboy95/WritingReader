@@ -219,7 +219,9 @@ extension HomeScreenViewController{
     
     /*  Action executed when the Settings button is pressed.    */
     func settingsButton(){
-        //  TODO.
+        let storyBoard = UIStoryboard(name:"Main", bundle: nil)
+        let VC = storyBoard.instantiateViewController(withIdentifier: "SettingsVC")
+        navigationController?.pushViewController(VC, animated: true)
     }
 }
 

@@ -11,6 +11,7 @@
 		863032169A18745BDDBEBB52 /* Pods_WritingReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ECBD9D1874D514A1E4E3F56 /* Pods_WritingReaderTests.framework */; };
 		CB1B9B451E9DCEA900B0D974 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1B9B441E9DCEA900B0D974 /* GoogleService-Info.plist */; };
 		CB7057AB1F5A008800B8CFEB /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB7057AA1F5A008800B8CFEB /* SwiftyJSON.framework */; };
+		CBA707C61FCE254D00920ECF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA707C51FCE254D00920ECF /* SettingsViewController.swift */; };
 		CBAB5D9B1F8827BB00F7761E /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAB5D9A1F8827BB00F7761E /* HomeScreenViewController.swift */; };
 		CBAB5D9E1F8829F300F7761E /* HomeScreenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAB5D9C1F8829F300F7761E /* HomeScreenCollectionViewCell.swift */; };
 		CBAB5D9F1F8829F300F7761E /* HomeScreenCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBAB5D9D1F8829F300F7761E /* HomeScreenCollectionViewCell.xib */; };
@@ -58,6 +59,7 @@
 		C741BF088E04625820DBC7DA /* Pods-WritingReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WritingReaderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WritingReaderTests/Pods-WritingReaderTests.release.xcconfig"; sourceTree = "<group>"; };
 		CB1B9B441E9DCEA900B0D974 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB7057AA1F5A008800B8CFEB /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../Library/Developer/Xcode/DerivedData/WritingReader-cxtnnjveiyzekmfwvzulwlhjuyxh/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		CBA707C51FCE254D00920ECF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		CBAB5D9A1F8827BB00F7761E /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		CBAB5D9C1F8829F300F7761E /* HomeScreenCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenCollectionViewCell.swift; sourceTree = "<group>"; };
 		CBAB5D9D1F8829F300F7761E /* HomeScreenCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				CBAB5D9A1F8827BB00F7761E /* HomeScreenViewController.swift */,
 				E6D0BC651FAC0BB400783171 /* TextEditViewController.swift */,
 				CBE0957C1FC50DA500037438 /* ForgotPasswordViewController.swift */,
+				CBA707C51FCE254D00920ECF /* SettingsViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 			files = (
 				E6FFAD1A1E3689B900953EF0 /* SignInViewController.swift in Sources */,
 				E6D0BC661FAC0BB400783171 /* TextEditViewController.swift in Sources */,
+				CBA707C61FCE254D00920ECF /* SettingsViewController.swift in Sources */,
 				CBD15DC31F8FFC9800CF6164 /* UIImage+ext.swift in Sources */,
 				CBACB0FB1EE1050D00F394FB /* UserProfileViewController.swift in Sources */,
 				CBAB5D9E1F8829F300F7761E /* HomeScreenCollectionViewCell.swift in Sources */,

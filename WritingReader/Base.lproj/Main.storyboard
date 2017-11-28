@@ -664,6 +664,53 @@
             </objects>
             <point key="canvasLocation" x="1552.8" y="851.42428785607206"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="TQ8-9g-bsK">
+            <objects>
+                <viewController storyboardIdentifier="SettingsVC" id="876-Km-SU5" customClass="SettingsViewController" customModule="WritingReader" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wHL-JT-4Wj"/>
+                        <viewControllerLayoutGuide type="bottom" id="rdJ-XR-82Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AVr-o0-Wyr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SpellCheck" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Pw-sW-XOc">
+                                <rect key="frame" x="16" y="80" width="147" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="147" id="ZAI-es-1dT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bOB-1l-zhs">
+                                <rect key="frame" x="310" y="80" width="51" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49" id="MdO-LL-Ild"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="switchButton:" destination="876-Km-SU5" eventType="valueChanged" id="xr7-Nl-MYp"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2Pw-sW-XOc" firstAttribute="top" secondItem="wHL-JT-4Wj" secondAttribute="bottom" constant="60" id="B9L-G2-KUx"/>
+                            <constraint firstItem="bOB-1l-zhs" firstAttribute="top" secondItem="wHL-JT-4Wj" secondAttribute="bottom" constant="60" id="c1h-Tt-SME"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bOB-1l-zhs" secondAttribute="trailing" id="eHj-f0-cOd"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="2Pw-sW-XOc" secondAttribute="leading" id="fJ3-Nt-Hqi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="switch" destination="bOB-1l-zhs" id="Ztu-Jb-7ND"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="50q-Fj-zC1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2469.5999999999999" y="830.73463268365822"/>
+        </scene>
         <!--Text Edit View Controller-->
         <scene sceneID="V7z-6x-uZs">
             <objects>

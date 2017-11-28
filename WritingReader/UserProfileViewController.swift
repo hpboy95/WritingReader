@@ -241,6 +241,7 @@ extension UserProfileViewController {
         }
     }
     
+    // Throwing a random error
     func save(text:String){
         self.ref.child("Users").child((Auth.auth().currentUser?.uid)!).child("Images_Recognized").child(self.imgUUID).updateChildValues(["Text": self.convertedText.text ?? "Unrecognizable"])
     }
